@@ -1,195 +1,56 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-<html lang="en">
-<!-- 版本更新记录.Fox.Tang -->  
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>莲花村网址导航</title>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
- 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
- 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>三角定位地图</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?e7dfa9852326bb64d161643a6fb7730f";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- 默认弹出模态框脚本开始 -->
-<script type="text/javascript">
-    $(function(){
-         $("#myModal").modal({
-		 <!-- 控制是否自动弹出, true为开启 , 其他为关闭 -->
-            keyboard: true2
-        });
-    });
-</script>
-<!-- 默认弹出模态框脚本结束 -->
-
-
+        .radius-marker {
+            font-size: 12px;  /* 设置文字大小 */
+            color: red;  /* 设置文字颜色 */
+            white-space: nowrap;  /* 防止换行 */
+        }
+    </style>
 </head>
 <body>
-<!-- 默认模态框 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-				<!-- 模态框标题 -->
-				<h3 class="modal-title" id="myModalLabel">
-				信&nbsp&nbsp息&nbsp&nbsp公&nbsp&nbsp告
-				</h3>
-				<!-- 模态框标题结束 -->
-			</div>
-			<!-- 模态框内容 -->
-			<div class="modal-body">
-			<h4>
-				<div class="modal-body">
-				<!-- 图片内容发布链接 -->
-                <img src="https://#" alt="" style="width:100%;">
-                </div>
-				<div><br>
-				<!-- 下方超链接 -->
-				
-			    <!-- 超链接结束 -->
-				</br></div>
-			
-			</h4>
-			</div>
-			<!-- 模态框内容结束 -->
-			<div class="modal-footer">
-										     
-		    	<button type="button" class="btn btn-success" data-dismiss="modal">我已知晓,继续访问
-				</button>
-				</div>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-<!-- 默认模态框 -->
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([31.2304, 121.4737], 13); // 上海市中心的坐标
 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
 
+        var circles = [];
 
+        function showRadius(radius) {
+            return L.divIcon({
+                className: 'radius-marker',
+                html: '<div>' + radius + '米</div>'
+            });
+        }
 
+        map.on('click', function(e) {
+            var radius = prompt("请输入半径（单位：米）：");
+            var circle = L.circle(e.latlng, {
+                color: 'red',
+                fillColor: '#ADD8E6',  // 浅蓝色
+                fillOpacity: 0.5,
+                radius: radius
+            }).addTo(map);
+            circles.push(circle);
+            
+            L.marker(e.latlng, {icon: showRadius(radius)}).addTo(map);
+        });
 
-
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="row clearfix">
-			  <p>&nbsp;</p>
-			  <div class="col-md-12 column">
-			    <div class="alert alert-dismissable alert-success text-center">
-			      <h1><strong>莲花村网址导航</strong></h1>
-
-			      <h3><strong><span style="color:red;font-weight:bold;">支持微信/电脑访问</span>，此网站仅限莲花村村民使用</strong></h3>
-			    </div>
-		      </div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="row clearfix">
-						<div class="col-md-6 column">
-							<div class="row clearfix">
-								<div class="col-md-6 column">
-									<div class="panel panel-info">
-										<div class="panel-heading">
-											<h3 class="panel-title">莲花村图书馆</h3>
-										</div>
-										<div class="panel-body">
-										 <div><a href="https://www.kdocs.cn/l/cbIeiPjMYfVS"		class="btn btn-info btn-sm btn-block">白莲花村民档案</a></div>
-					<p>
-				    <div>
-					<a href="https://kdocs.cn/l/ca2GnyXJzWZ7"		class="btn btn-info btn-sm btn-block">美牛牛反诈风暴</a>
-					</div>
-					<p>
-					<div>
-					<a href="https://kdocs.cn/l/crG4Erl5A3gD"		class="btn btn-info btn-sm btn-block">如何用保险保障自己的一生</a>
-					</div>
-
-
-					</div>
-										<div class="panel-footer"></div>
-									</div>
-								</div>
-								<div class="col-md-6 column">
-								  <div class="panel panel-info">
-										<div class="panel-heading"><h3 class="panel-title">在线工具</h3></div>
-										<div class="panel-body">
-										  <div><a href="https://www.ilovepdf.com/zh-cn" class="btn btn-info btn-sm btn-block">PDF转换合并</a></div><p>
-										  <div><a href="https://upup.li/tools/salary/" class="btn btn-info btn-sm btn-block">五险一金计算器</a></div><p>
-										  <div><a href="https://theb.ai/#/chat" class="btn btn-info btn-sm btn-block">ChatGPT（需梯子）</a></div>
-</div>
-										<div class="panel-footer"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 column">
-							<div class="row clearfix">
-								<div class="col-md-6 column">
-									<div class="panel panel-info">
-										<div class="panel-heading">
-											<h3 class="panel-title">
-												常用软件
-											</h3>
-										</div>
-										<div class="panel-body">
-										 <div>
-					<a href="http://www.yishimei.cn/network/319.html"		class="btn btn-info btn-sm btn-block">系统 / Office激活</a>
-					</div>
-					<p>
-					<div>
-					<a href="https://github.com/huiyadanli/RevokeMsgPatcher"		class="btn btn-info btn-sm btn-block">微信多开防撤回</a>
-					</div>
-					<p>
-					<div>
-					<a href="https://gw.djtaoke.cn/static/silk/1693397646621/nauth.html?router=upper_793674071#/login?p=mine"		class="btn btn-info btn-sm btn-block">小蚕霸王餐</a>
-					</div>
-										  
-										</div>
-										<div class="panel-footer"></div>
-									</div>
-								</div>
-								<div class="col-md-6 column">
-									<div class="panel panel-info">
-										<div class="panel-heading">
-											<h3 class="panel-title">
-												18+导航
-											</h3>
-										</div>
-										<div class="panel-body">
-										  <div><a href="https://www.haitangbook.com/"										     class="btn btn-info btn-sm btn-block">境外文学作品</a></div><p>
-										  <div><a href="https://whichav.video/"			     class="btn btn-info btn-sm btn-block">18+网址大全</a></div><p>
-										  <div><a href="https://www.bluegv.com/"										     class="btn btn-info btn-sm btn-block">小蓝GV</a></div>
-										  
-										  </div>
-										<div class="panel-footer"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="alert alert-dismissable alert-warning text-right">
-						Power by ChatGPT
-						</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        window.addEventListener('resize', function() {
+            map.invalidateSize();
+        });
+    </script>
 </body>
+</html>
